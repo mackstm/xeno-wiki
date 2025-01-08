@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://cxf.apache.org/jaxws https://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- Definición del servicio -->
+    <jaxws:endpoint id="userServiceEndpoint"
+                    implementor="#userServiceImpl"
+                    address="/users">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="roleServiceEndpoint"
+                    implementor="#roleServiceImpl"
+                    address="/roles">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="xenoCharacterServiceEndpoint"
+                    implementor="#xenoCharacterServiceImpl"
+                    address="/characters">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="weaponServiceEndpoint"
+                    implementor="#weaponServiceImpl"
+                    address="/weapons">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="weaponTypeServiceEndpoint"
+                    implementor="#weaponTypeServiceImpl"
+                    address="/weapon-types">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="roleServiceEndpoint"
+                    implementor="#roleServiceImpl"
+                    address="/">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="roleServiceEndpoint"
+                    implementor="#roleServiceImpl"
+                    address="/roles">
+    </jaxws:endpoint>
+
+    <!-- Bean del servicio implementado -->
+    <bean id="userServiceImpl" class="es.ies.puerto.soap.service.UserServiceSoapImpl"/>
+    <bean id="roleServiceImpl" class="es.ies.puerto.soap.service.RoleServiceSoapImpl"/>
+
+    <bean id="xenoCharacterServiceImpl" class="es.ies.puerto.soap.service.XenoCharacterServiceSoapImpl"/>
+    <bean id="weaponServiceImpl" class="es.ies.puerto.soap.service.WeaponServiceSoapImpl"/>
+    <bean id="weaponTypeServiceImpl" class="es.ies.puerto.soap.service.WeaponTypeServiceSoapImpl"/>
+    <bean id="mechServiceImpl" class="es.ies.puerto.soap.service.MechServiceSoapImpl"/>
+    <bean id="mechCategoryServiceImpl" class="es.ies.puerto.soap.service.MechCategoryServiceSoapImpl"/>
+</beans>
