@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author mackstm
  */
 @Component
+@Transactional()
 public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
     /**
      * Properties

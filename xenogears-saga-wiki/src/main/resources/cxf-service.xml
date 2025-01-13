@@ -32,23 +32,24 @@
                     address="/weapon-types">
     </jaxws:endpoint>
 
-    <jaxws:endpoint id="roleServiceEndpoint"
-                    implementor="#roleServiceImpl"
-                    address="/">
+    <jaxws:endpoint id="mechServiceEndpoint"
+                    implementor="#mechServiceImpl"
+                    address="/mechs">
     </jaxws:endpoint>
 
-    <jaxws:endpoint id="roleServiceEndpoint"
-                    implementor="#roleServiceImpl"
-                    address="/roles">
+    <jaxws:endpoint id="mechCategoryServiceEndpoint"
+                    implementor="#mechCategoryServiceImpl"
+                    address="/mech-categories">
     </jaxws:endpoint>
-
     <!-- Bean del servicio implementado -->
-    <bean id="userServiceImpl" class="es.ies.puerto.soap.service.UserServiceSoapImpl"/>
-    <bean id="roleServiceImpl" class="es.ies.puerto.soap.service.RoleServiceSoapImpl"/>
+    <bean id="mechServiceImpl" class="es.ies.puerto.soap.service.impl.MechSoap"/>
 
-    <bean id="xenoCharacterServiceImpl" class="es.ies.puerto.soap.service.XenoCharacterServiceSoapImpl"/>
-    <bean id="weaponServiceImpl" class="es.ies.puerto.soap.service.WeaponServiceSoapImpl"/>
-    <bean id="weaponTypeServiceImpl" class="es.ies.puerto.soap.service.WeaponTypeServiceSoapImpl"/>
-    <bean id="mechServiceImpl" class="es.ies.puerto.soap.service.MechServiceSoapImpl"/>
-    <bean id="mechCategoryServiceImpl" class="es.ies.puerto.soap.service.MechCategoryServiceSoapImpl"/>
+    <bean id="userServiceImpl" class="es.ies.puerto.soap.service.impl.UserSoap"/>
+    <bean id="roleServiceImpl" class="es.ies.puerto.soap.service.impl.RoleSoap"/>
+
+    <bean id="xenoCharacterServiceImpl" class="es.ies.puerto.soap.service.impl.XenoCharacterSoap"/>
+    <bean id="weaponServiceImpl" class="es.ies.puerto.soap.service.impl.WeaponSoap"/>
+    <bean id="weaponTypeServiceImpl" class="es.ies.puerto.soap.service.impl.WeaponTypeSoap"/>
+
+    <bean id="mechCategoryServiceImpl" class="es.ies.puerto.soap.service.impl.MechCategorySoap"/>
 </beans>
