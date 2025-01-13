@@ -39,6 +39,15 @@ public class XenoCharacterSoap implements IServiceSoap<XenoCharacterDTO> {
     }
 
     @Override
+    public boolean update(XenoCharacterDTO xenoCharacterDTO) {
+        try {
+            return service.update(xenoCharacterDTO.getId(), xenoCharacterDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
         return service.delete(id);
     }

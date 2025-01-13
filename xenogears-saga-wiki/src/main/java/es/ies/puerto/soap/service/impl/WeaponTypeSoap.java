@@ -39,6 +39,15 @@ public class WeaponTypeSoap implements IServiceSoap<WeaponTypeDTO> {
     }
 
     @Override
+    public boolean update(WeaponTypeDTO weaponTypeDTO) {
+        try {
+            return service.update(weaponTypeDTO.getId(), weaponTypeDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
         return service.delete(id);
     }

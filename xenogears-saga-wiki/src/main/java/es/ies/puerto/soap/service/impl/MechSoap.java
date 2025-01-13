@@ -39,6 +39,16 @@ public class MechSoap implements IServiceSoap<MechDTO> {
     }
 
     @Override
+    public boolean update(MechDTO mechDTO) {
+        try {
+            return service.update(mechDTO.getId(), mechDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
     public boolean delete(int id) {
         return service.delete(id);
     }

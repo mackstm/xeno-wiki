@@ -39,6 +39,15 @@ public class UserSoap implements IServiceSoap<UserDTO> {
     }
 
     @Override
+    public boolean update(UserDTO userDTO) {
+        try {
+            return service.update(userDTO.getId(), userDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
         return service.delete(id);
     }

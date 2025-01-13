@@ -20,6 +20,7 @@ public interface IServiceSoap<T> {
 
     @WebMethod
     public boolean add(T t);
+    public boolean update(T t);
 
     @WebMethod
     public boolean delete(int id);

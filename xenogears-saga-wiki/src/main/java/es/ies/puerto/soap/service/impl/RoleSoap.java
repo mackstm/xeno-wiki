@@ -39,6 +39,15 @@ public class RoleSoap implements IServiceSoap<RoleDTO> {
     }
 
     @Override
+    public boolean update(RoleDTO roleDTO) {
+        try {
+            return service.update(roleDTO.getId(), roleDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
         return service.delete(id);
     }
