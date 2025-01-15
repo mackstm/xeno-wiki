@@ -1,0 +1,22 @@
+version: '3'
+services:
+  # ubuntu:
+  #   build:
+  #     context: .
+  #     dockerfile: UbuntuDockerfile
+
+  tomcat-app:
+    image: tomcat:latest
+    container_name: tomcat-container
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./target:/usr/local/tomcat/webapps/
+    networks:
+      - xenowiki-network
+
+
+volumes:
+  xenowiki-volume:
+networks:
+  xenowiki-network:
