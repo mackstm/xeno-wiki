@@ -16,11 +16,12 @@ public class WeaponType {
      * Properties
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @OneToMany(mappedBy = "weaponType", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "weaponType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Weapon> weapons;
 
     /**

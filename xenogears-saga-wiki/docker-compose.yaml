@@ -1,9 +1,5 @@
 version: '3'
 services:
-  # ubuntu:
-  #   build:
-  #     context: .
-  #     dockerfile: UbuntuDockerfile
 
   tomcat-app:
     image: tomcat:latest
@@ -12,6 +8,7 @@ services:
       - "8082:8080"
     volumes:
       - ./target:/usr/local/tomcat/webapps/
+      - ./src/main/resources/xeno.db:/usr/local/tomcat/xeno.db
     networks:
       - xenowiki-network
 

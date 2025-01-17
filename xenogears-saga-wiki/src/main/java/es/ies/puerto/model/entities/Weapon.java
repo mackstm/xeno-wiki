@@ -15,14 +15,15 @@ public class Weapon {
      * Properties
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @OneToOne(mappedBy = "weapon", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "weapon", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private XenoCharacter xenoCharacter;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "type_id")
     private WeaponType weaponType;
 
