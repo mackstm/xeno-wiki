@@ -4,7 +4,6 @@ import es.ies.puerto.controller.interfaces.IController;
 import es.ies.puerto.dto.MechDTO;
 import es.ies.puerto.service.impl.MechService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,16 +44,14 @@ public class MechController implements IController<MechDTO> {
 
     @Override
     @PostMapping("/")
-    @Operation(summary = "Insert character")
-    public ResponseEntity add(MechDTO mechDTO) {
+    public ResponseEntity add(@RequestBody MechDTO mechDTO) {
         service.add(mechDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update character")
     @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody MechDTO mechDTO) {
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody MechDTO mechDTO) {
         try {
             service.update(id, mechDTO);
             return ResponseEntity.ok().build();
@@ -64,7 +61,6 @@ public class MechController implements IController<MechDTO> {
     }
 
     @GetMapping("/")
-    @Operation(summary = "Get all characters")
     @Override
     public ResponseEntity<List<MechDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
@@ -72,14 +68,12 @@ public class MechController implements IController<MechDTO> {
 
     @Override
     @GetMapping("/{id}")
-    @Operation(summary = "Get character by ID")
     public ResponseEntity<MechDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete character")
     public ResponseEntity delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

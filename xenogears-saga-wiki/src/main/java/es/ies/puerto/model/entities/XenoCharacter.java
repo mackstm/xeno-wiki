@@ -23,11 +23,11 @@ public class XenoCharacter implements Serializable {
     int id;
     String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "weapon_id")
     private Weapon weapon;
 
-    @OneToMany(mappedBy = "xenoCharacter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "xenoCharacter", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Mech> mechs;
 
 

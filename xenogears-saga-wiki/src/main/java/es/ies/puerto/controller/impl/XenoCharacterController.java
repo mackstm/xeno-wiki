@@ -4,7 +4,6 @@ import es.ies.puerto.controller.interfaces.IController;
 import es.ies.puerto.dto.XenoCharacterDTO;
 import es.ies.puerto.service.impl.XenoCharacterService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,16 +43,14 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
 
     @Override
     @PostMapping("/")
-    @Operation(summary = "Insert character")
-    public ResponseEntity add(XenoCharacterDTO xenoCharacterDTO) {
+    public ResponseEntity add(@RequestBody XenoCharacterDTO xenoCharacterDTO) {
         service.add(xenoCharacterDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update character")
     @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody XenoCharacterDTO xenoCharacterDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody XenoCharacterDTO xenoCharacterDTO) {
         try {
             service.update(id, xenoCharacterDTO);
             return ResponseEntity.ok().build();
@@ -62,23 +59,20 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
         }
     }
 
-    @GetMapping("/")
-    @Operation(summary = "Get all characters")
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<XenoCharacterDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @Override
     @GetMapping("/{id}")
-    @Operation(summary = "Get character by ID")
     public ResponseEntity<XenoCharacterDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete character")
     public ResponseEntity delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

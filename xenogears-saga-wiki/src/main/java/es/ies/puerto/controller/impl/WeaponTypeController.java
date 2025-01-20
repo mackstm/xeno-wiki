@@ -5,7 +5,6 @@ import es.ies.puerto.controller.interfaces.IController;
 import es.ies.puerto.dto.WeaponTypeDTO;
 import es.ies.puerto.service.impl.WeaponTypeService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,16 +45,14 @@ public class WeaponTypeController implements IController<WeaponTypeDTO> {
 
     @Override
     @PostMapping("/")
-    @Operation(summary = "Insert character")
-    public ResponseEntity add(WeaponTypeDTO weaponTypeDTO) {
+    public ResponseEntity add(@RequestBody WeaponTypeDTO weaponTypeDTO) {
         service.add(weaponTypeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update character")
     @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody WeaponTypeDTO weaponTypeDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody WeaponTypeDTO weaponTypeDTO) {
         try {
             service.update(id, weaponTypeDTO);
             return ResponseEntity.ok().build();
@@ -64,23 +61,20 @@ public class WeaponTypeController implements IController<WeaponTypeDTO> {
         }
     }
 
-    @GetMapping("/")
-    @Operation(summary = "Get all characters")
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<WeaponTypeDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @Override
     @GetMapping("/{id}")
-    @Operation(summary = "Get character by ID")
     public ResponseEntity<WeaponTypeDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete character")
     public ResponseEntity delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

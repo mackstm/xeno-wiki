@@ -57,7 +57,15 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
                     new Exception("Element not found for this id :: " + id));
 
             Weapon aux = IWeaponMapper.INSTANCE.toEntity(weaponDTO);
-            toUpdate.setName(aux.getName());
+            if (aux.getName() != null) {
+                toUpdate.setName(aux.getName());
+            }
+            if (aux.getXenoCharacter() != null) {
+                toUpdate.setXenoCharacter(aux.getXenoCharacter());
+            }
+            if (aux.getWeaponType() != null) {
+                toUpdate.setWeaponType(aux.getWeaponType());
+            }
             repository.save(toUpdate);
             return true;
 

@@ -4,7 +4,6 @@ import es.ies.puerto.controller.interfaces.IController;
 import es.ies.puerto.dto.WeaponDTO;
 import es.ies.puerto.service.impl.WeaponService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,16 +44,14 @@ public class WeaponController implements IController<WeaponDTO> {
 
     @Override
     @PostMapping("/")
-    @Operation(summary = "Insert character")
-    public ResponseEntity add(WeaponDTO weaponDTO) {
+    public ResponseEntity add(@RequestBody WeaponDTO weaponDTO) {
         service.add(weaponDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update character")
     @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody WeaponDTO weaponDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody WeaponDTO weaponDTO) {
         try {
             service.update(id, weaponDTO);
             return ResponseEntity.ok().build();
@@ -63,23 +60,20 @@ public class WeaponController implements IController<WeaponDTO> {
         }
     }
 
-    @GetMapping("/")
-    @Operation(summary = "Get all characters")
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<WeaponDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @Override
     @GetMapping("/{id}")
-    @Operation(summary = "Get character by ID")
     public ResponseEntity<WeaponDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete character")
     public ResponseEntity delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

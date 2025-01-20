@@ -57,10 +57,18 @@ public class UserService implements IServiceJPA<UserDTO> {
                     new Exception("Element not found for this id :: " + id));
 
             User aux = IUserMapper.INSTANCE.toEntity(userDTO);
-            toUpdate.setName(aux.getName());
-            toUpdate.setEmail(aux.getEmail());
-            toUpdate.setRole(aux.getRole());
-            toUpdate.setPassword(aux.getPassword());
+            if (aux.getName() != null) {
+                toUpdate.setName(aux.getName());
+            }
+            if (aux.getEmail() != null) {
+                toUpdate.setEmail(aux.getEmail());
+            }
+            if (aux.getRole() != null) {
+                toUpdate.setRole(aux.getRole());
+            }
+            if (aux.getPassword() != null) {
+                toUpdate.setPassword(aux.getPassword());
+            }
             repository.save(toUpdate);
             return true;
 

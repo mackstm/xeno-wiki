@@ -21,7 +21,7 @@ public class WeaponType {
 
     private String name;
 
-    @OneToMany(mappedBy = "weaponType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "weaponType", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Weapon> weapons;
 
     /**

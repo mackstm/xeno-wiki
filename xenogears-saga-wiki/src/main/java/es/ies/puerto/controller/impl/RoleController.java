@@ -4,7 +4,6 @@ import es.ies.puerto.controller.interfaces.IController;
 import es.ies.puerto.dto.RoleDTO;
 import es.ies.puerto.service.impl.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,16 +45,14 @@ public class RoleController implements IController<RoleDTO> {
 
     @Override
     @PutMapping("/{id}")
-    @Operation(summary = "Insert role")
-    public ResponseEntity add(RoleDTO dto) {
+    public ResponseEntity add(@RequestBody RoleDTO dto) {
         service.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/")
-    @Operation(summary = "Update role")
     @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody RoleDTO dto) {
+    @PutMapping("/")
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody RoleDTO dto) {
         try {
             service.update(id, dto);
             return ResponseEntity.ok().build();
@@ -64,23 +61,20 @@ public class RoleController implements IController<RoleDTO> {
         }
     }
 
-    @GetMapping("/")
-    @Operation(summary = "Get all roles")
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<RoleDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @Override
     @GetMapping("/{id}")
-    @Operation(summary = "Get role by ID")
     public ResponseEntity<RoleDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete role")
     public ResponseEntity delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

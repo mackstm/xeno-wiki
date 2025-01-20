@@ -20,10 +20,10 @@ public class Weapon {
 
     private String name;
 
-    @OneToOne(mappedBy = "weapon", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "weapon", fetch = FetchType.LAZY)
     private XenoCharacter xenoCharacter;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private WeaponType weaponType;
 

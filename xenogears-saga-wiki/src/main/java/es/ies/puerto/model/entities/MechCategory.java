@@ -21,7 +21,7 @@ public class MechCategory {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "mechCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mechCategory", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Mech> mechs;
 
     /**

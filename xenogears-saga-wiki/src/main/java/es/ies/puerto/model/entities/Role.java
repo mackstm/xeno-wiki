@@ -22,7 +22,7 @@ public class Role {
 
     private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     Set<User> users;
 
     /**

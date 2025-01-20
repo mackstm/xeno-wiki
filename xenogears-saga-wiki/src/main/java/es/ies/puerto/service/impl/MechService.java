@@ -57,7 +57,15 @@ public class MechService implements IServiceJPA<MechDTO> {
                     new Exception("Element not found for this id :: " + id));
 
             Mech aux = IMechMapper.INSTANCE.toEntity(mechDTO);
-            toUpdate.setName(aux.getName());
+            if (aux.getName() != null){
+                toUpdate.setName(aux.getName());
+            }
+            if (aux.getXenoCharacter() != null){
+                toUpdate.setXenoCharacter(aux.getXenoCharacter());
+            }
+            if (aux.getMechCategory() != null){
+                toUpdate.setMechCategory(aux.getMechCategory());
+            }
             repository.save(toUpdate);
             return true;
 

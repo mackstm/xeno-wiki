@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 /**
  * @author mackstm
  */
-@Mapper
+@Mapper(uses = IUserMapper.class)
 public interface IRoleMapper {
     IRoleMapper INSTANCE = Mappers.getMapper(IRoleMapper.class);
 

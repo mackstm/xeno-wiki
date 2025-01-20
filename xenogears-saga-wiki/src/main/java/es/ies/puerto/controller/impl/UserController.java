@@ -6,7 +6,6 @@ import es.ies.puerto.service.impl.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,26 +45,24 @@ public class UserController implements IController<UserDTO> {
     }
 
 
+    @Override
     @PostMapping("/")
-    @Operation(summary = "Insert user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User created successfully"),
             @ApiResponse(responseCode = "400", description = "Bad request")
     })
-    @Override
-    public ResponseEntity add(UserDTO dto) {
+    public ResponseEntity add(@RequestBody UserDTO dto) {
         service.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Override
     @PutMapping("/{id}")
-    @Operation(summary = "Update user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User updated successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @Override
-    public ResponseEntity update(@PathVariable(value = "id") int id, @Valid @RequestBody UserDTO dto) {
+    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody UserDTO dto) {
         try {
             service.update(id, dto);
             return ResponseEntity.ok().build();
@@ -74,15 +71,13 @@ public class UserController implements IController<UserDTO> {
         }
     }
 
-    @GetMapping("/")
-    @Operation(summary = "Get all users")
     @Override
+    @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @Override
-    @Operation(summary = "Get user by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "User not found")
@@ -93,7 +88,6 @@ public class UserController implements IController<UserDTO> {
     }
 
     @Override
-    @Operation(summary = "Delete user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User deleted successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
