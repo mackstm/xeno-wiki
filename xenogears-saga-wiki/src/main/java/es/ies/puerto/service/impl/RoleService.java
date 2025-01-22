@@ -98,7 +98,7 @@ public class RoleService implements IServiceJPA<RoleDTO> {
 
     @Override
     public boolean delete(int id) {
-        if (!repository.existsById(id)) {
+        if (!repository.existsById(id) || id == 1) {
             return false;
         }
         repository.deleteById(id);

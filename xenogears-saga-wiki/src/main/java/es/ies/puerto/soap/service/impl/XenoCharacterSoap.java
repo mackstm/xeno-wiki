@@ -8,6 +8,9 @@ import jakarta.xml.ws.WebServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+/**
+ * @author mackstm
+ */
 
 @WebService(endpointInterface = "es.ies.puerto.soap.service.interfaces.IServiceSoap")
 public class XenoCharacterSoap implements IServiceSoap<XenoCharacterDTO> {

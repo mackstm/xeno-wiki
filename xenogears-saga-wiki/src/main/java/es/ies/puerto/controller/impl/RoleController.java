@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+/**
+ * @author mackstm
+ */
 @RestController
 @RequestMapping("/v1/roles")
 public class RoleController implements IController<RoleDTO> {
@@ -76,8 +79,12 @@ public class RoleController implements IController<RoleDTO> {
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable int id) {
-        service.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        if (service.delete(id)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.badRequest().body("Can't delete admin");
+        }
+
     }
 
 }
