@@ -53,7 +53,7 @@ public class MechCategoryController implements IController<MechCategoryDTO> {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody MechCategoryDTO mechCategoryDTO) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") int id, @RequestBody MechCategoryDTO mechCategoryDTO) {
         try {
             service.update(id, mechCategoryDTO);
             return ResponseEntity.ok().build();

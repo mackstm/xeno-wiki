@@ -63,8 +63,8 @@ INSERT INTO mech_categories (name) VALUES ('AGWS');
 INSERT INTO mech_categories (name) VALUES ('ES unit');
 
 -- Inserts for Role
-INSERT INTO roles (name) VALUES ('admin');
-INSERT INTO roles (name) VALUES ('user');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (name) VALUES ('ROLE_USER');
 
 -- Inserts for Weapon
 INSERT INTO weapons (name, type_id) VALUES ('Yamato', 1);
