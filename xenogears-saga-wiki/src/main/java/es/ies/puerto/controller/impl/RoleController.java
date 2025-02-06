@@ -14,7 +14,7 @@ import java.util.List;
  * @author mackstm
  */
 @RestController
-@RequestMapping("/v1/roles")
+@RequestMapping("/api/v1/roles")
 public class RoleController implements IController<RoleDTO> {
     /**
      * Properties
@@ -48,14 +48,14 @@ public class RoleController implements IController<RoleDTO> {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity add(@RequestBody RoleDTO dto) {
+    public ResponseEntity<RoleDTO> add(@RequestBody RoleDTO dto) {
         service.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
-    @PutMapping("/")
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody RoleDTO dto) {
+    @PutMapping
+    public ResponseEntity<String> update(@PathVariable(name = "id") int id, @RequestBody RoleDTO dto) {
         try {
             service.update(id, dto);
             return ResponseEntity.ok().build();
@@ -65,7 +65,7 @@ public class RoleController implements IController<RoleDTO> {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<RoleDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
@@ -78,7 +78,7 @@ public class RoleController implements IController<RoleDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<String> delete(@PathVariable int id) {
         if (service.delete(id)) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else {

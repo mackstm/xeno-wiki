@@ -2,6 +2,7 @@ package es.ies.puerto.model.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "mech_categories")
-public class MechCategory {
+public class MechCategory implements Serializable {
     /**
      * Properties
      */

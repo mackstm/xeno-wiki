@@ -15,7 +15,7 @@ import java.util.List;
  * @author mackstm
  */
 @RestController
-@RequestMapping("/v1/weapontypes")
+@RequestMapping("/api/v1/weapontypes")
 public class WeaponTypeController implements IController<WeaponTypeDTO> {
     /**
      * Properties
@@ -46,15 +46,15 @@ public class WeaponTypeController implements IController<WeaponTypeDTO> {
     }
 
     @Override
-    @PostMapping("/")
-    public ResponseEntity add(@RequestBody WeaponTypeDTO weaponTypeDTO) {
+    @PostMapping
+    public ResponseEntity<WeaponTypeDTO> add(@RequestBody WeaponTypeDTO weaponTypeDTO) {
         service.add(weaponTypeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody WeaponTypeDTO weaponTypeDTO) {
+    public ResponseEntity<String> update(@PathVariable(value = "id") int id, @RequestBody WeaponTypeDTO weaponTypeDTO) {
         try {
             service.update(id, weaponTypeDTO);
             return ResponseEntity.ok().build();
@@ -64,7 +64,7 @@ public class WeaponTypeController implements IController<WeaponTypeDTO> {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<WeaponTypeDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
@@ -77,7 +77,7 @@ public class WeaponTypeController implements IController<WeaponTypeDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<String> delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

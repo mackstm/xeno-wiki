@@ -2,6 +2,7 @@ package es.ies.puerto.model.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "weapons")
-public class Weapon {
+public class Weapon implements Serializable {
     /**
      * Properties
      */

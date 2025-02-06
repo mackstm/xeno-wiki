@@ -16,7 +16,7 @@ import java.util.List;
  * @author mackstm
  */
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping("/api/v1/users")
 public class UserController implements IController<UserDTO> {
     /**
      * Properties
@@ -49,12 +49,12 @@ public class UserController implements IController<UserDTO> {
 
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User created successfully"),
             @ApiResponse(responseCode = "400", description = "Bad request")
     })
-    public ResponseEntity add(@RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> add(@RequestBody UserDTO dto) {
         service.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -65,7 +65,7 @@ public class UserController implements IController<UserDTO> {
             @ApiResponse(responseCode = "200", description = "User updated successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody UserDTO dto) {
+    public ResponseEntity<String> update(@PathVariable(value = "id") int id, @RequestBody UserDTO dto) {
         try {
             service.update(id, dto);
             return ResponseEntity.ok().build();
@@ -75,7 +75,7 @@ public class UserController implements IController<UserDTO> {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<UserDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
@@ -96,7 +96,7 @@ public class UserController implements IController<UserDTO> {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<String> delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

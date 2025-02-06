@@ -14,7 +14,7 @@ import java.util.List;
  * @author mackstm
  */
 @RestController
-@RequestMapping("/v1/mechcategories")
+@RequestMapping("/api/v1/mechcategories")
 public class MechCategoryController implements IController<MechCategoryDTO> {
     /**
      * Properties
@@ -45,15 +45,15 @@ public class MechCategoryController implements IController<MechCategoryDTO> {
     }
 
     @Override
-    @PostMapping("/")
-    public ResponseEntity add(@RequestBody MechCategoryDTO mechCategoryDTO) {
+    @PostMapping
+    public ResponseEntity<MechCategoryDTO> add(@RequestBody MechCategoryDTO mechCategoryDTO) {
         service.add(mechCategoryDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable(value = "id") int id, @RequestBody MechCategoryDTO mechCategoryDTO) {
+    public ResponseEntity<String> update(@PathVariable(name = "id") int id, @RequestBody MechCategoryDTO mechCategoryDTO) {
         try {
             service.update(id, mechCategoryDTO);
             return ResponseEntity.ok().build();
@@ -62,7 +62,7 @@ public class MechCategoryController implements IController<MechCategoryDTO> {
         }
     }
     @Override
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<MechCategoryDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
@@ -75,7 +75,7 @@ public class MechCategoryController implements IController<MechCategoryDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<String> delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

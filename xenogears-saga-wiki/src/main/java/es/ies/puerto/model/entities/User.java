@@ -2,6 +2,7 @@ package es.ies.puerto.model.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 /**
  * @author mackstm
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     /**
      * Properties

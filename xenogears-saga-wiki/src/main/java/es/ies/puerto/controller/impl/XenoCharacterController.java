@@ -14,7 +14,7 @@ import java.util.List;
  * @author mackstm
  */
 @RestController
-@RequestMapping("/v1/characters")
+@RequestMapping("/api/v1/characters")
 public class XenoCharacterController implements IController<XenoCharacterDTO> {
     /**
      * Properties
@@ -45,15 +45,15 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
     }
 
     @Override
-    @PostMapping("/")
-    public ResponseEntity add(@RequestBody XenoCharacterDTO xenoCharacterDTO) {
+    @PostMapping
+    public ResponseEntity<XenoCharacterDTO> add(@RequestBody XenoCharacterDTO xenoCharacterDTO) {
         service.add(xenoCharacterDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody XenoCharacterDTO xenoCharacterDTO) {
+    public ResponseEntity<String> update(@PathVariable(value = "id") int id, @RequestBody XenoCharacterDTO xenoCharacterDTO) {
         try {
             service.update(id, xenoCharacterDTO);
             return ResponseEntity.ok().build();
@@ -63,7 +63,7 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<XenoCharacterDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
@@ -76,7 +76,7 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<String> delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

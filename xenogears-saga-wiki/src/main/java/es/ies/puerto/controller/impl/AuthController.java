@@ -14,15 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 @CrossOrigin
 public class AuthController {
-    
 
-    @Autowired
     private AuthService authService;
 
-    @Autowired
     private UserService userService;
 
-	/**
+    @Autowired
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    /**
 	 * Login de user
 	 * @param u con datos de user
 	 * @return token JWT
@@ -52,5 +59,4 @@ public class AuthController {
             return ResponseEntity.ok("Usuario registrado");
         }
     }
-
 }
