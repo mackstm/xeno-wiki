@@ -2,7 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.XenoCharacterDTO;
 import es.ies.puerto.mapper.struct.IXenoCharacterMapper;
-import es.ies.puerto.model.db.dao.IDaoXenoCharacter;
+import es.ies.puerto.model.db.dao.IXenoCharacterRepository;
 import es.ies.puerto.model.entities.XenoCharacter;
 import es.ies.puerto.service.interfaces.IServiceJPA;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(XenoCharacterService.class);
 
-    private IDaoXenoCharacter repository;
+    private IXenoCharacterRepository repository;
 
     /**
      * Default constructor of the class
@@ -37,7 +37,7 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
      * @param repository
      */
     @Autowired
-    public void setiDaoMGSCharacter(IDaoXenoCharacter repository) {
+    public void setRepository(IXenoCharacterRepository repository) {
         this.repository = repository;
     }
 

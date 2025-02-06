@@ -2,7 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.MechDTO;
 import es.ies.puerto.mapper.struct.IMechMapper;
-import es.ies.puerto.model.db.dao.IDaoMech;
+import es.ies.puerto.model.db.dao.IMechRepository;
 import es.ies.puerto.model.entities.Mech;
 import es.ies.puerto.service.interfaces.IServiceJPA;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ public class MechService implements IServiceJPA<MechDTO> {
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(MechService.class);
 
-    private IDaoMech repository;
+    private IMechRepository repository;
 
     /**
      * Default constructor of the class
@@ -37,7 +37,7 @@ public class MechService implements IServiceJPA<MechDTO> {
      * @param repository
      */
     @Autowired
-    public void setiDaoMGSCharacter(IDaoMech repository) {
+    public void setRepository(IMechRepository repository) {
         this.repository = repository;
     }
 

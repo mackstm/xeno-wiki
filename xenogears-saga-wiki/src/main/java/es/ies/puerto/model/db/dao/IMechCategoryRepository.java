@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author mackstm
  */
 @Repository
-public interface IDaoMechCategory extends JpaRepository<MechCategory, Integer> {
+public interface IMechCategoryRepository extends JpaRepository<MechCategory, Integer> {
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author mackstm
  */
 @Repository
-public interface IDaoXenoCharacter extends JpaRepository<XenoCharacter, Integer> {
+public interface IXenoCharacterRepository extends JpaRepository<XenoCharacter, Integer> {
 }

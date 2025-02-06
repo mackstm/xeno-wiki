@@ -2,7 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.UserDTO;
 import es.ies.puerto.mapper.struct.IUserMapper;
-import es.ies.puerto.model.db.dao.IDaoUser;
+import es.ies.puerto.model.db.dao.IUserRepository;
 import es.ies.puerto.model.entities.User;
 import es.ies.puerto.service.interfaces.IServiceJPA;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ public class UserService implements IServiceJPA<UserDTO> {
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-    private IDaoUser repository;
+    private IUserRepository repository;
 
     /**
      * Default constructor of the class
@@ -37,7 +37,7 @@ public class UserService implements IServiceJPA<UserDTO> {
      * @param repository
      */
     @Autowired
-    public void setIDaoUser(IDaoUser repository) {
+    public void setRepository(IUserRepository repository) {
         this.repository = repository;
     }
 
@@ -57,8 +57,8 @@ public class UserService implements IServiceJPA<UserDTO> {
                     new Exception("Element not found for this id :: " + id));
 
             User aux = IUserMapper.INSTANCE.toEntity(userDTO);
-            if (aux.getName() != null) {
-                toUpdate.setName(aux.getName());
+            if (aux.getUsername() != null) {
+                toUpdate.setUsername(aux.getUsername());
             }
             if (aux.getEmail() != null) {
                 toUpdate.setEmail(aux.getEmail());

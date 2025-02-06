@@ -2,7 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.WeaponDTO;
 import es.ies.puerto.mapper.struct.IWeaponMapper;
-import es.ies.puerto.model.db.dao.IDaoWeapon;
+import es.ies.puerto.model.db.dao.IWeaponRepository;
 import es.ies.puerto.model.entities.Weapon;
 import es.ies.puerto.service.interfaces.IServiceJPA;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(WeaponService.class);
 
-    private IDaoWeapon repository;
+    private IWeaponRepository repository;
 
     /**
      * Default constructor of the class
@@ -37,7 +37,7 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
      * @param repository
      */
     @Autowired
-    public void setiDaoMGSCharacter(IDaoWeapon repository) {
+    public void setRepository(IWeaponRepository repository) {
         this.repository = repository;
     }
 

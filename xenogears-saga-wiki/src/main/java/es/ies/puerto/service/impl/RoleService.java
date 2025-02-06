@@ -2,7 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.RoleDTO;
 import es.ies.puerto.mapper.struct.IRoleMapper;
-import es.ies.puerto.model.db.dao.IDaoRole;
+import es.ies.puerto.model.db.dao.IRoleRepository;
 import es.ies.puerto.model.entities.Role;
 import es.ies.puerto.service.interfaces.IServiceJPA;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ public class RoleService implements IServiceJPA<RoleDTO> {
      */
     private final static Logger LOGGER = LoggerFactory.getLogger(RoleService.class);
 
-    private IDaoRole repository;
+    private IRoleRepository repository;
 
     /**
      * Default constructor of the class
@@ -37,7 +37,7 @@ public class RoleService implements IServiceJPA<RoleDTO> {
      * @param repository
      */
     @Autowired
-    public void setIDaoRole(IDaoRole repository) {
+    public void setRepository(IRoleRepository repository) {
         this.repository = repository;
     }
 
