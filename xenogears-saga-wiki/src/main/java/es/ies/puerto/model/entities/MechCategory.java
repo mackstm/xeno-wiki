@@ -39,18 +39,6 @@ public class MechCategory implements Serializable {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     * @param mechs
-     */
-    public MechCategory(int id, String name, Set<Mech> mechs) {
-        this.id = id;
-        this.name = name;
-        this.mechs = mechs;
-    }
-
-    /**
      * Getters and setters
      */
 

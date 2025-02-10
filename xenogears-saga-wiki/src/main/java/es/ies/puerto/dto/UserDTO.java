@@ -1,12 +1,13 @@
 package es.ies.puerto.dto;
 
+import es.ies.puerto.model.entities.User;
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
 
 public class UserDTO {
-    @Id
+
     private int id;
     private String username;
     private String email;
@@ -80,10 +81,9 @@ public class UserDTO {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO user = (UserDTO) o;
-        return id == user.id && Objects.equals(email, user.email);
+        return id == user.id;
     }
 
     @Override

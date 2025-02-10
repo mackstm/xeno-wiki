@@ -26,17 +26,6 @@ public class XenoCharacterDTO {
         this.id = id;
     }
 
-    /**
-     * Full constructor of the class
-     * @param id
-     * @param name
-     */
-
-    public XenoCharacterDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
 
     /**
      * Getters and setters

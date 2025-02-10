@@ -42,20 +42,6 @@ public class Weapon implements Serializable {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     * @param xenoCharacter
-     * @param weaponType
-     */
-    public Weapon(int id, String name, XenoCharacter xenoCharacter, WeaponType weaponType) {
-        this.id = id;
-        this.name = name;
-        this.xenoCharacter = xenoCharacter;
-        this.weaponType = weaponType;
-    }
-
-    /**
      * Getters and setters
      */
 

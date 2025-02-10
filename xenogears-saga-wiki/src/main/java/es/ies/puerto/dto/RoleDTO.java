@@ -1,5 +1,6 @@
 package es.ies.puerto.dto;
 
+import es.ies.puerto.model.entities.User;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -7,7 +8,6 @@ import java.util.Set;
 
 
 public class RoleDTO {
-    @Id
 
     private int id;
 
@@ -63,10 +63,9 @@ public class RoleDTO {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoleDTO role = (RoleDTO) o;
-        return id == role.id && Objects.equals(name, role.name);
+        return id == role.id;
     }
 
     @Override

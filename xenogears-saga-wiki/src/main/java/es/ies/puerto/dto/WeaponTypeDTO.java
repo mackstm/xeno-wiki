@@ -24,16 +24,6 @@ public class WeaponTypeDTO {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     */
-    public WeaponTypeDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    /**
      * Getters and setters
      */
 

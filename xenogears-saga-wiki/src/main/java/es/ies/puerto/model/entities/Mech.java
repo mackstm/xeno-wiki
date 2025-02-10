@@ -42,20 +42,6 @@ public class Mech implements Serializable {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     * @param xenoCharacter
-     * @param mechCategory
-     */
-    public Mech(int id, String name, XenoCharacter xenoCharacter, MechCategory mechCategory) {
-        this.id = id;
-        this.name = name;
-        this.xenoCharacter = xenoCharacter;
-        this.mechCategory = mechCategory;
-    }
-
-    /**
      * Getters and setters
      */
 

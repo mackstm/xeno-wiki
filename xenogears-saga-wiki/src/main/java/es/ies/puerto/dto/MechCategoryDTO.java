@@ -26,16 +26,6 @@ public class MechCategoryDTO {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     */
-    public MechCategoryDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    /**
      * Getters and setters
      */
 

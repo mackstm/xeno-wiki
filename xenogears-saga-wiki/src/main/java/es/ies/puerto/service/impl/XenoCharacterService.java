@@ -48,7 +48,7 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
      */
     @Override
     public boolean add(XenoCharacterDTO xenoCharacterDTO) {
-        if (xenoCharacterDTO == null){
+        if (repository.existsById(xenoCharacterDTO.getId())){
             return false;
         }
         repository.save(IXenoCharacterMapper.INSTANCE.toEntity(xenoCharacterDTO));
@@ -103,22 +103,7 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
      */
     @Override
     public XenoCharacterDTO getById(int id) {
-        Integer auxId = id;
-        if (!repository.existsById(auxId)) {
-            return null;
-        }
-
-        XenoCharacterDTO result = null;
-
-        List<XenoCharacterDTO> list = getAll();
-
-        for (XenoCharacterDTO xenoCharacterDTO : list){
-            if (xenoCharacterDTO.getId() == id){
-                result = xenoCharacterDTO;
-                break;
-            }
-        }
-        return result;
+        return IXenoCharacterMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     /**

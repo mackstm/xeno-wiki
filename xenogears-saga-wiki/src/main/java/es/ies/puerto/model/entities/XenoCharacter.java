@@ -46,20 +46,6 @@ public class XenoCharacter implements Serializable {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     * @param weapon
-     * @param mechs
-     */
-    public XenoCharacter(int id, String name, Weapon weapon, Set<Mech> mechs) {
-        this.id = id;
-        this.name = name;
-        this.weapon = weapon;
-        this.mechs = mechs;
-    }
-
-    /**
      * Getters and setters
      */
     public int getId() {

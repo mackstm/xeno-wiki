@@ -26,20 +26,6 @@ public class WeaponDTO {
     }
 
     /**
-     * Full constructor
-     * @param id
-     * @param name
-     * @param xenoCharacter
-     * @param weaponType
-     */
-    public WeaponDTO(int id, String name, XenoCharacterDTO xenoCharacter, WeaponTypeDTO weaponType) {
-        this.id = id;
-        this.name = name;
-        this.xenoCharacter = xenoCharacter;
-        this.weaponType = weaponType;
-    }
-
-    /**
      * Getters and setters
      */
 
