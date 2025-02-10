@@ -39,7 +39,7 @@ CREATE TABLE xeno_characters (
 -- Table: User
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    username TEXT NOT NULL,
     email TEXT NOT NULL,
     password TEXT NOT NULL,
     role_id INTEGER NOT NULL,
@@ -81,5 +81,6 @@ INSERT INTO mechs (name, pilot_id, category_id) VALUES ('Fenrir', 2, 2);
 INSERT INTO mechs (name, pilot_id, category_id) VALUES ('Vierge', 3, 1);
 
 -- Inserts for User
-INSERT INTO users (name, email, password, role_id) VALUES ('admin', 'admin@example.com', 'admin', 1);
+INSERT INTO users (username, email, password, role_id) VALUES ('admin', 'admin@example.com',
+'$2a$10$FD0OR5Q0OE3F1ssdaaRlKuvuDcvBpF/tmFZhTSDiPkm96GYBiXxH6', 1);
 

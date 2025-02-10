@@ -41,6 +41,12 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
         this.repository = repository;
     }
 
+/**
+ * Adds a new Weapon to the repository.
+ *
+ * @param weaponDTO the WeaponDTO object to be added
+ * @return true if the Weapon was successfully added, false if the WeaponDTO is null
+ */
     @Override
     public boolean add(WeaponDTO weaponDTO) {
         if (weaponDTO == null){
@@ -50,6 +56,14 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
         return true;
     }
 
+/**
+ * Updates an existing Weapon entity in the repository with the data from the provided WeaponDTO.
+ *
+ * @param id the identifier of the Weapon to be updated
+ * @param weaponDTO the data transfer object containing updated data for the Weapon
+ * @return true if the update was successful, false if an exception occurred
+ * @throws Exception if the Weapon with the given id does not exist
+ */
     @Override
     public boolean update(int id, WeaponDTO weaponDTO) throws Exception {
         try {
@@ -75,6 +89,11 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
     }
 
 
+/**
+ * Retrieves all Weapon entities from the repository and converts them to WeaponDTOs.
+ *
+ * @return a List of WeaponDTO objects representing all weapons in the repository
+ */
     @Override
     public List<WeaponDTO> getAll() {
         List<Weapon> weapons = repository.findAll();
@@ -85,6 +104,12 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
         return weaponDTOS;
     }
 
+/**
+ * Retrieves a WeaponDTO from the repository by its identifier.
+ *
+ * @param id the identifier of the WeaponDTO to be retrieved
+ * @return the WeaponDTO object with the given id, or null if no such Weapon exists
+ */
     @Override
     public WeaponDTO getById(int id) {
         if (!repository.existsById(id)) {
@@ -104,6 +129,12 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
         return result;
     }
 
+    /**
+     * Deletes a WeaponDTO object from the database.
+     *
+     * @param id the identifier of the WeaponDTO to be deleted
+     * @return true if the WeaponDTO was deleted successfully, false otherwise
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id)) {

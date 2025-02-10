@@ -55,13 +55,13 @@ public class JwtFilter extends OncePerRequestFilter {
         
     	
     	//rutas permitidas sin estar autenticado
-    	String[] permitted= { "/swagger-ui.html",
-    	        					"/swagger-ui/", "/v2/", 
-    	        					"configuration/",	"/swagger", 
-    	        					"/webjars/", "/api/login", 
-    	        					"/api/register", "/v3/",
-    	        					"/websocket", "/index.html", "/api/v1",
-									"/api/confirmation"};
+    	String[] permitted= {"/swagger-ui.html",
+				"/swagger-ui/", "/v2/", "/v3/",
+				"/configuration/","/swagger/",
+				"/webjars/", "/api/v1/",
+				"/api/auth/",
+				"/websocket/", "/index.html",
+				"/services/"};
 
     			
         
@@ -86,14 +86,6 @@ public class JwtFilter extends OncePerRequestFilter {
             	final String nombreuser=mapInfoToken.get("username");
             
             	final String rol = mapInfoToken.get("role");
-
-				final String verified = mapInfoToken.get("verified");
-
-				if (verified.equals("0")) {
-					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-					response.getWriter().write("Cuenta no verificada");
-					return;
-				}
             	
 
             	//UserDetails en Spring Security es un interfaz basado en Principal de java

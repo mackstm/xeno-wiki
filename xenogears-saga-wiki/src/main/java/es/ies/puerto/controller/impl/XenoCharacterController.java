@@ -10,40 +10,53 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 /**
+ * Controller for XenoCharacterDTO.
+ *
  * @author mackstm
  */
 @RestController
-@RequestMapping("/api/v1/characters")
+@RequestMapping("/api/v2/characters")
+@CrossOrigin
 public class XenoCharacterController implements IController<XenoCharacterDTO> {
+
     /**
-     * Properties
+     * Service for XenoCharacterDTO.
      */
     private XenoCharacterService service;
 
     /**
-     * Default constructor of the class
+     * Default constructor.
      */
     public XenoCharacterController() {
     }
 
     /**
-     * Constructor of the class
-     * @param service
+     * Constructor.
+     *
+     * @param service the service.
      */
     public XenoCharacterController(XenoCharacterService service) {
         this.service = service;
     }
 
     /**
-     * Setter of the service
-     * @param service
+     * Sets the service.
+     *
+     * @param service the service.
      */
     @Autowired
     public void setMgsCharacterService(XenoCharacterService service) {
         this.service = service;
     }
 
+    /**
+     * Adds a new XenoCharacterDTO.
+     *
+     * @param xenoCharacterDTO the XenoCharacterDTO.
+     * @return the added XenoCharacterDTO.
+     */
     @Override
     @PostMapping
     public ResponseEntity<XenoCharacterDTO> add(@RequestBody XenoCharacterDTO xenoCharacterDTO) {
@@ -51,6 +64,13 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /**
+     * Updates an existing XenoCharacterDTO.
+     *
+     * @param id the id.
+     * @param xenoCharacterDTO the XenoCharacterDTO.
+     * @return the updated XenoCharacterDTO.
+     */
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable(value = "id") int id, @RequestBody XenoCharacterDTO xenoCharacterDTO) {
@@ -62,23 +82,39 @@ public class XenoCharacterController implements IController<XenoCharacterDTO> {
         }
     }
 
+    /**
+     * Gets all XenoCharacterDTOs.
+     *
+     * @return the list of XenoCharacterDTOs.
+     */
     @Override
     @GetMapping
     public ResponseEntity<List<XenoCharacterDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
+    /**
+     * Gets a XenoCharacterDTO by id.
+     *
+     * @param id the id.
+     * @return the XenoCharacterDTO.
+     */
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<XenoCharacterDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
+    /**
+     * Deletes a XenoCharacterDTO by id.
+     *
+     * @param id the id.
+     * @return the deleted XenoCharacterDTO.
+     */
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

@@ -41,6 +41,11 @@ public class MechService implements IServiceJPA<MechDTO> {
         this.repository = repository;
     }
 
+    /**
+     * Method to add a MechDTO to the database
+     * @param mechDTO the mechDTO to add
+     * @return true if the MechDTO was added successfully, false otherwise
+     */
     @Override
     public boolean add(MechDTO mechDTO) {
         if (mechDTO == null){
@@ -50,6 +55,14 @@ public class MechService implements IServiceJPA<MechDTO> {
         return true;
     }
 
+/**
+ * Updates an existing Mech entity in the database with the given MechDTO.
+ *
+ * @param id the identifier of the Mech to be updated
+ * @param mechDTO the data transfer object containing updated data
+ * @return true if the update was successful, false otherwise
+ * @throws Exception if the Mech with the given id does not exist
+ */
     @Override
     public boolean update(int id, MechDTO mechDTO) throws Exception {
         try {
@@ -75,6 +88,11 @@ public class MechService implements IServiceJPA<MechDTO> {
     }
 
 
+    /**
+     * Returns a list of all MechDTO objects in the database.
+     *
+     * @return a list of MechDTO objects
+     */
     @Override
     public List<MechDTO> getAll() {
         List<Mech> mechs = repository.findAll();
@@ -85,6 +103,12 @@ public class MechService implements IServiceJPA<MechDTO> {
         return mechDTOS;
     }
 
+    /**
+     * Retrieves a MechDTO from the database by its identifier.
+     *
+     * @param id the identifier of the MechDTO to be retrieved
+     * @return a MechDTO object if it exists, null otherwise
+     */
     @Override
     public MechDTO getById(int id) {
         if (!repository.existsById(id)) {
@@ -104,6 +128,12 @@ public class MechService implements IServiceJPA<MechDTO> {
         return result;
     }
 
+    /**
+     * Deletes a MechDTO object from the database.
+     *
+     * @param id the identifier of the MechDTO to be deleted
+     * @return true if the MechDTO was deleted successfully, false otherwise
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id)) {

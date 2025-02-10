@@ -41,6 +41,12 @@ public class RoleService implements IServiceJPA<RoleDTO> {
         this.repository = repository;
     }
 
+    /**
+     * Adds a new Role to the repository.
+     *
+     * @param roleDTO the RoleDTO object to be added
+     * @return true if the Role was successfully added, false if the RoleDTO is null
+     */
     @Override
     public boolean add(RoleDTO roleDTO) {
         if (roleDTO == null){
@@ -50,6 +56,14 @@ public class RoleService implements IServiceJPA<RoleDTO> {
         return true;
     }
 
+    /**
+     * Updates a Role in the repository.
+     *
+     * @param id the identifier of the Role to be updated
+     * @param roleDTO the RoleDTO object containing the updated data
+     * @return true if the Role was successfully updated, false if the RoleDTO is null
+     * @throws Exception if the Role with the given id is not found
+     */
     @Override
     public boolean update(int id, RoleDTO roleDTO) throws Exception {
         try {
@@ -67,6 +81,11 @@ public class RoleService implements IServiceJPA<RoleDTO> {
     }
 
 
+    /**
+     * Gets all the Roles from the repository.
+     *
+     * @return a List containing all the Roles in the repository
+     */
     @Override
     public List<RoleDTO> getAll() {
         List<Role> roles = repository.findAll();
@@ -77,6 +96,12 @@ public class RoleService implements IServiceJPA<RoleDTO> {
         return roleDTOS;
     }
 
+    /**
+     * Gets a Role from the repository by its id.
+     *
+     * @param id the identifier of the Role to be retrieved
+     * @return the RoleDTO object with the given id, or null if no such Role exists
+     */
     @Override
     public RoleDTO getById(int id) {
         if (!repository.existsById(id)) {
@@ -96,6 +121,12 @@ public class RoleService implements IServiceJPA<RoleDTO> {
         return result;
     }
 
+    /**
+     * Deletes a Role from the repository by its id.
+     *
+     * @param id the identifier of the Role to be deleted
+     * @return true if the Role was successfully deleted, false if the Role does not exist or is an admin role
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id) || id == 1) {

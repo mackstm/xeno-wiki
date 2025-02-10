@@ -41,6 +41,11 @@ public class UserService implements IServiceJPA<UserDTO> {
         this.repository = repository;
     }
 
+    /**
+     * Method to add a UserDTO to the database
+     * @param userDTO the userDTO to add
+     * @return true if the UserDTO was added successfully, false otherwise
+     */
     @Override
     public boolean add(UserDTO userDTO) {
         if (userDTO == null){
@@ -50,6 +55,14 @@ public class UserService implements IServiceJPA<UserDTO> {
         return true;
     }
 
+/**
+ * Updates an existing User entity in the database with the given UserDTO.
+ *
+ * @param id the identifier of the User to be updated
+ * @param userDTO the data transfer object containing updated data
+ * @return true if the update was successful, false otherwise
+ * @throws Exception if the User with the given id does not exist
+ */
     @Override
     public boolean update(int id, UserDTO userDTO) throws Exception {
         try {
@@ -78,6 +91,11 @@ public class UserService implements IServiceJPA<UserDTO> {
     }
 
 
+    /**
+     * Returns a list of all UserDTO objects in the database.
+     *
+     * @return a list of UserDTO objects
+     */
     @Override
     public List<UserDTO> getAll() {
         List<User> users = repository.findAll();
@@ -88,6 +106,12 @@ public class UserService implements IServiceJPA<UserDTO> {
         return userDTOS;
     }
 
+/**
+ * Retrieves a UserDTO from the database by its identifier.
+ *
+ * @param id the identifier of the UserDTO to be retrieved
+ * @return the UserDTO object with the given id, or null if no such User exists
+ */
     @Override
     public UserDTO getById(int id) {
         if (!repository.existsById(id)) {
@@ -107,6 +131,12 @@ public class UserService implements IServiceJPA<UserDTO> {
         return result;
     }
 
+    /**
+     * Deletes a UserDTO object from the database.
+     *
+     * @param id the identifier of the UserDTO to be deleted
+     * @return true if the UserDTO was deleted successfully, false otherwise
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id)) {

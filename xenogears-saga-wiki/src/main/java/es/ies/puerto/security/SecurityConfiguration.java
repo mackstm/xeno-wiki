@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,20 +34,18 @@ public class SecurityConfiguration {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http
-			.cors(cors->cors.disable())
-			.csrf(csrf -> csrf.disable() )
+			.cors(AbstractHttpConfigurer::disable)
+			.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
 					.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-					
-					
 					.requestMatchers(
-					"/", "/swagger-ui.html", 
-					"/swagger-ui/**", "/v2/**", 
-					"/configuration/**",	"/swagger*/**", 
-					"/webjars/**", "/api/login", 
-					"/api/register", "/v3/**",
-					"/websocket*/**", "/index.html", "/api/v1/**",
-					"/api/confirmation"
+							"/", "/swagger-ui.html",
+							"/swagger-ui/**", "/v2/**", "/v3/**",
+							"/configuration/**","/swagger*/**",
+							"/webjars/**", "/api/v1/**",
+							"/api/auth/**",
+							"/websocket*/**", "/index.html",
+							"/services/**"
 					).permitAll()
 					.requestMatchers("/api/v2/**").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/api/v3/**").hasRole("ADMIN")

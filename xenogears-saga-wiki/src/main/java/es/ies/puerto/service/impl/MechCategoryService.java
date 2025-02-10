@@ -41,6 +41,11 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
         this.repository = repository;
     }
 
+    /**
+     * Method to add a MechCategoryDTO to the database
+     * @param mechCategoryDTO MechCategoryDTO to add
+     * @return boolean indicating if the operation was successful
+     */
     @Override
     public boolean add(MechCategoryDTO mechCategoryDTO) {
         if (mechCategoryDTO == null){
@@ -50,6 +55,13 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
         return true;
     }
 
+    /**
+     * Updates a MechCategory in the database with the given information
+     * @param id of the MechCategory to update
+     * @param mechCategoryDTO with the new information
+     * @return boolean indicating if the operation was successful
+     * @throws Exception if the MechCategory with the given id does not exist
+     */
     @Override
     public boolean update(int id, MechCategoryDTO mechCategoryDTO) throws Exception {
         try {
@@ -67,6 +79,10 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
     }
 
 
+    /**
+     * Method to get all the MechCategoryDTO in the database
+     * @return a List of MechCategoryDTO
+     */
     @Override
     public List<MechCategoryDTO> getAll() {
         List<MechCategory> mechCategorys = repository.findAll();
@@ -77,6 +93,11 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
         return mechCategoryDTOS;
     }
 
+    /**
+     * Retrieves a MechCategoryDTO by its id
+     * @param id of the MechCategoryDTO to retrieve
+     * @return the MechCategoryDTO with the given id, or null if it does not exist
+     */
     @Override
     public MechCategoryDTO getById(int id) {
         if (!repository.existsById(id)) {
@@ -96,6 +117,11 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
         return result;
     }
 
+    /**
+     * Deletes a MechCategory by its id
+     * @param id of the MechCategory to delete
+     * @return boolean indicating if the operation was successful
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id)) {

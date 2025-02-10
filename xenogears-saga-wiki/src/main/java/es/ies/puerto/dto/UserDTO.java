@@ -8,9 +8,8 @@ import java.util.Objects;
 public class UserDTO {
     @Id
     private int id;
-    private String name;
+    private String username;
     private String email;
-    private String password;
     private RoleDTO role;
 
     /**
@@ -39,12 +38,12 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -53,14 +52,6 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public RoleDTO getRole() {
@@ -78,7 +69,7 @@ public class UserDTO {
     public String toString() {
         return "UserDTO{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", id_role=" + role.getName() + '\''+
                 '}';

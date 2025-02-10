@@ -37,7 +37,6 @@ public class JwtService {
          Map<String,String> infoToken = new HashMap<String,String>();
          infoToken.put("username", claims.get("sub").asString());
          infoToken.put("role", claims.get("role").asString());
-         infoToken.put("verified", claims.get("verified").asString());
 
          return infoToken;
     }    

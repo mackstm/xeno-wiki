@@ -41,6 +41,11 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
         this.repository = repository;
     }
 
+    /**
+     * Method to add a XenoCharacterDTO
+     * @param xenoCharacterDTO the character to add
+     * @return true if the character was added, false otherwise
+     */
     @Override
     public boolean add(XenoCharacterDTO xenoCharacterDTO) {
         if (xenoCharacterDTO == null){
@@ -50,6 +55,14 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
         return true;
     }
 
+    /**
+     * Updates a XenoCharacterDTO in the repository.
+     *
+     * @param id the identifier of the XenoCharacterDTO to be updated
+     * @param xenoCharacterDTO the XenoCharacterDTO object containing the updated data
+     * @return true if the XenoCharacterDTO was successfully updated, false if the XenoCharacterDTO is null
+     * @throws Exception if the XenoCharacterDTO with the given id is not found
+     */
     @Override
     public boolean update(int id, XenoCharacterDTO xenoCharacterDTO) throws Exception {
         try {
@@ -67,6 +80,11 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
     }
 
 
+    /**
+     * Gets all the XenoCharacterDTO from the repository.
+     *
+     * @return a list of XenoCharacterDTO
+     */
     @Override
     public List<XenoCharacterDTO> getAll() {
         List<XenoCharacter> xenoCharacters = repository.findAll();
@@ -77,6 +95,12 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
         return xenoCharacterDTOS;
     }
 
+    /**
+     * Gets a XenoCharacterDTO from the repository by its id.
+     *
+     * @param id the identifier of the XenoCharacterDTO to be retrieved
+     * @return the XenoCharacterDTO with the given id, or null if no XenoCharacterDTO with the given id exists
+     */
     @Override
     public XenoCharacterDTO getById(int id) {
         Integer auxId = id;
@@ -97,6 +121,12 @@ public class XenoCharacterService implements IServiceJPA<XenoCharacterDTO> {
         return result;
     }
 
+    /**
+     * Deletes a XenoCharacterDTO from the repository by its id.
+     *
+     * @param id the identifier of the XenoCharacterDTO to be deleted
+     * @return true if the XenoCharacterDTO was successfully deleted, false if the XenoCharacterDTO with the given id is not found
+     */
     @Override
     public boolean delete(int id) {
         if (!repository.existsById(id)) {
