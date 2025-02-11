@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 /**
- * @author nalleon
+ * @author mackstm
  */
 public interface IController <T> {
     public ResponseEntity<T> add(T t);
