@@ -2,6 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.RoleDTO;
 import es.ies.puerto.mapper.struct.IRoleMapper;
+import es.ies.puerto.mapper.struct.IWeaponTypeMapper;
 import es.ies.puerto.model.db.dao.IRoleRepository;
 import es.ies.puerto.model.entities.Role;
 import es.ies.puerto.service.interfaces.IServiceJPA;
@@ -49,7 +50,7 @@ public class RoleService implements IServiceJPA<RoleDTO> {
      */
     @Override
     public boolean add(RoleDTO roleDTO) {
-        if (roleDTO == null){
+        if (repository.existsById(roleDTO.getId())){
             return false;
         }
         repository.save(IRoleMapper.INSTANCE.toEntity(roleDTO));
@@ -104,21 +105,7 @@ public class RoleService implements IServiceJPA<RoleDTO> {
      */
     @Override
     public RoleDTO getById(int id) {
-        if (!repository.existsById(id)) {
-            return null;
-        }
-
-        RoleDTO result = null;
-
-        List<RoleDTO> list = getAll();
-
-        for (RoleDTO roleDTO: list){
-            if (roleDTO.getId() == id){
-                result = roleDTO;
-                break;
-            }
-        }
-        return result;
+        return IRoleMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     /**

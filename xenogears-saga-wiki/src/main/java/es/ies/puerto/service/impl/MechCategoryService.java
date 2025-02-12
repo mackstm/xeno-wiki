@@ -2,6 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.MechCategoryDTO;
 import es.ies.puerto.mapper.struct.IMechCategoryMapper;
+import es.ies.puerto.mapper.struct.IWeaponTypeMapper;
 import es.ies.puerto.model.db.dao.IMechCategoryRepository;
 import es.ies.puerto.model.entities.MechCategory;
 import es.ies.puerto.service.interfaces.IServiceJPA;
@@ -48,7 +49,7 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
      */
     @Override
     public boolean add(MechCategoryDTO mechCategoryDTO) {
-        if (mechCategoryDTO == null){
+        if (repository.existsById(mechCategoryDTO.getId())){
             return false;
         }
         repository.save(IMechCategoryMapper.INSTANCE.toEntity(mechCategoryDTO));
@@ -100,21 +101,7 @@ public class MechCategoryService implements IServiceJPA<MechCategoryDTO> {
      */
     @Override
     public MechCategoryDTO getById(int id) {
-        if (!repository.existsById(id)) {
-            return null;
-        }
-
-        MechCategoryDTO result = null;
-
-        List<MechCategoryDTO> list = getAll();
-
-        for (MechCategoryDTO mechCategoryDTO : list){
-            if (mechCategoryDTO.getId() == id){
-                result = mechCategoryDTO;
-                break;
-            }
-        }
-        return result;
+        return IMechCategoryMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     /**

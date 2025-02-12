@@ -2,6 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.WeaponDTO;
 import es.ies.puerto.mapper.struct.IWeaponMapper;
+import es.ies.puerto.mapper.struct.IWeaponTypeMapper;
 import es.ies.puerto.model.db.dao.IWeaponRepository;
 import es.ies.puerto.model.entities.Weapon;
 import es.ies.puerto.service.interfaces.IServiceJPA;
@@ -49,7 +50,7 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
  */
     @Override
     public boolean add(WeaponDTO weaponDTO) {
-        if (weaponDTO == null){
+        if (repository.existsById(weaponDTO.getId())){
             return false;
         }
         repository.save(IWeaponMapper.INSTANCE.toEntity(weaponDTO));
@@ -112,21 +113,7 @@ public class WeaponService implements IServiceJPA<WeaponDTO> {
  */
     @Override
     public WeaponDTO getById(int id) {
-        if (!repository.existsById(id)) {
-            return null;
-        }
-
-        WeaponDTO result = null;
-
-        List<WeaponDTO> list = getAll();
-
-        for (WeaponDTO weaponDTO : list){
-            if (weaponDTO.getId() == id){
-                result = weaponDTO;
-                break;
-            }
-        }
-        return result;
+        return IWeaponMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     /**

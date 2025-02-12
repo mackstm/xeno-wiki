@@ -31,6 +31,14 @@ public class User implements Serializable {
     public User() {}
 
     /**
+     * Constructor used for searches
+     * @param id of user
+     */
+    public User(int id) {
+        this.id = id;
+    }
+
+    /**
      * Constructor of the class with unique properties
      * @param id of the user
      * @param email of the user

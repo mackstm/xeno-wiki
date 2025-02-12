@@ -2,6 +2,7 @@ package es.ies.puerto.service.impl;
 
 import es.ies.puerto.dto.UserDTO;
 import es.ies.puerto.mapper.struct.IUserMapper;
+import es.ies.puerto.mapper.struct.IWeaponTypeMapper;
 import es.ies.puerto.model.db.dao.IUserRepository;
 import es.ies.puerto.model.entities.User;
 import es.ies.puerto.service.interfaces.IServiceJPA;
@@ -48,7 +49,7 @@ public class UserService implements IServiceJPA<UserDTO> {
      */
     @Override
     public boolean add(UserDTO userDTO) {
-        if (userDTO == null){
+        if (repository.existsById(userDTO.getId())){
             return false;
         }
         repository.save(IUserMapper.INSTANCE.toEntity(userDTO));
@@ -78,9 +79,6 @@ public class UserService implements IServiceJPA<UserDTO> {
             }
             if (aux.getRole() != null) {
                 toUpdate.setRole(aux.getRole());
-            }
-            if (aux.getPassword() != null) {
-                toUpdate.setPassword(aux.getPassword());
             }
             repository.save(toUpdate);
             return true;
@@ -114,21 +112,7 @@ public class UserService implements IServiceJPA<UserDTO> {
  */
     @Override
     public UserDTO getById(int id) {
-        if (!repository.existsById(id)) {
-            return null;
-        }
-
-        UserDTO result = null;
-
-        List<UserDTO> list = getAll();
-
-        for (UserDTO userDTO: list){
-            if (userDTO.getId() == id){
-                result = userDTO;
-                break;
-            }
-        }
-        return result;
+        return IUserMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     /**

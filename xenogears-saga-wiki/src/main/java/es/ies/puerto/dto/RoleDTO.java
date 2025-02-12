@@ -19,6 +19,14 @@ public class RoleDTO {
     public RoleDTO() {}
 
     /**
+     * Constructor used for searches
+     * @param id of role
+     */
+    public RoleDTO(int id) {
+        this.id = id;
+    }
+
+    /**
      * Full constructor of the clss
      * @param id of the user
      * @param name of the user

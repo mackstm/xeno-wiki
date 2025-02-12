@@ -25,6 +25,20 @@ public class MechDTO {
     }
 
     /**
+     * Full constructor
+     * @param id
+     * @param name
+     * @param xenoCharacter
+     * @param mechCategory
+     */
+    public MechDTO(int id, String name, XenoCharacterDTO xenoCharacter, MechCategoryDTO mechCategory) {
+        this.id = id;
+        this.name = name;
+        this.xenoCharacter = xenoCharacter;
+        this.mechCategory = mechCategory;
+    }
+
+    /**
      * Getters and setters
      */
 
