@@ -10,36 +10,57 @@
     <jaxws:endpoint id="userServiceEndpoint"
                     implementor="#userServiceImpl"
                     address="/users">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="roleServiceEndpoint"
                     implementor="#roleServiceImpl"
                     address="/roles">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="xenoCharacterServiceEndpoint"
                     implementor="#xenoCharacterServiceImpl"
                     address="/characters">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="weaponServiceEndpoint"
                     implementor="#weaponServiceImpl"
                     address="/weapons">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="weaponTypeServiceEndpoint"
                     implementor="#weaponTypeServiceImpl"
                     address="/weapon-types">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="mechServiceEndpoint"
                     implementor="#mechServiceImpl"
                     address="/mechs">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
 
     <jaxws:endpoint id="mechCategoryServiceEndpoint"
                     implementor="#mechCategoryServiceImpl"
                     address="/mech-categories">
+        <jaxws:inInterceptors>
+            <ref bean="cxfAuthInterceptor"/>
+        </jaxws:inInterceptors>
     </jaxws:endpoint>
     <!-- Bean del servicio implementado -->
     <bean id="mechServiceImpl" class="es.ies.puerto.soap.service.impl.MechSoap"/>
@@ -52,4 +73,6 @@
     <bean id="weaponTypeServiceImpl" class="es.ies.puerto.soap.service.impl.WeaponTypeSoap"/>
 
     <bean id="mechCategoryServiceImpl" class="es.ies.puerto.soap.service.impl.MechCategorySoap"/>
+
+    <bean id="cxfAuthInterceptor" class="es.ies.puerto.security.interceptor.CxfAuthInterceptor"/>
 </beans>
