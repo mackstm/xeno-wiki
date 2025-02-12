@@ -82,29 +82,7 @@ public class JwtFilter extends OncePerRequestFilter {
             
             	final String rol = mapInfoToken.get("role");
 
-            	UserDetails userDetails = new UserDetails() {
-
-            		String username=nombreuser;
-
-					@Override
-					public Collection<? extends GrantedAuthority> getAuthorities() {
-					    List<GrantedAuthority> authorities = new ArrayList<>();
-
-					    authorities.add(new SimpleGrantedAuthority(rol));
-					    return authorities;
-					}
-
-					@Override
-					public String getPassword() { return null; 	}
-
-					@Override
-					public String getUsername() {
-						return username;
-					}
-
-            	};
-
-
+				CustomUserDetails userDetails = new CustomUserDetails(nombreuser, rol);
 
         		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
         				userDetails,
