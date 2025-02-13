@@ -15,9 +15,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
+/**
+ * @author mackstm
+ */
 public class CxfAuthInterceptor extends  AbstractPhaseInterceptor<Message> {
-
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String tokenPrefix="Bearer ";
     private JwtService jwtTokenManager;
     @Autowired
@@ -54,7 +55,7 @@ public class CxfAuthInterceptor extends  AbstractPhaseInterceptor<Message> {
                 final String username = mapInfoToken.get("username");
                 final String role = mapInfoToken.get("role");
 
-                if (!role.equals(ROLE_ADMIN)) {
+                if (!role.equals("ROLE_ADMIN")) {
                     throw new SecurityException("Unauthorized");
                 }
 
